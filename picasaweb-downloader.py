@@ -18,28 +18,22 @@ def get_urls(album_page):
 
 
 def download_photos(urls, path):
-    print("Do pobrania {0} zdjęć".format(len(urls)))
+    print("Downloading {} photos".format(len(urls)))
     for i, url in enumerate(urls):
         filename = os.path.split(url)[1].replace("%", " ")
         urllib.urlretrieve(url, os.path.join(path, filename))
-        print("Pobrano {0} zdjęcie {1}".format(i + 1, filename))
+        print("{}: {} downloaded".format(i + 1, filename))
 
 
 def main(url, path=os.getcwd()):
-    try:
-        sock = urllib2.urlopen(url)
-    except IOError:
-        print("Bład połączenia")
-        sys.exit(1)
+    sock = urllib2.urlopen(url)
     page = sock.read()
-    sock.close()
     download_photos(get_urls(page), path)
 
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:
-        sys.exit("picasaweb-downloader.py <adres do albumu> "
-                "[ścieżka do zapisu]")
+        sys.exit("picasaweb-downloader.py <album_url> [path]")
     elif len(sys.argv) == 2:
         main(sys.argv[1])
     else:

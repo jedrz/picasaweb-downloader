@@ -1,4 +1,6 @@
-Skrypt do masowego pobierania zdjęć z Picasy Web
-Wymagany python 2.6.*
+Simple album downloader from picasaweb.
 
-picasaweb-downloader.py <adres do albumu> [ścieżka do zapisu]
+Python 2.x required.
+
+Usage:
+picasaweb-downloader.py <album_url> [path]
